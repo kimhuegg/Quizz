@@ -1,16 +1,19 @@
 import axios from 'axios'
 import { handleTokenExpired } from '../../ultis/token'
+import {api_admin_getUsers} from '../../api/index'
 
 export const ADMIN_GET_LIST_USER_SUCCESS = 'ADMIN_GET_LIST_USER_SUCCESS'
 export const ADMIN_GET_LIST_USER_FAIL = 'ADMIN_GET_LIST_USER_FAIL'
 
 export const getListUser = () => async (dispatch, getState) => {
     try {
-        const { data } = await axios.get('/v1/users/', {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
+        const { data } = await api_admin_getUsers()
+        // axios.get('/v1/users/', {
+        //     headers: {
+        //         "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
+        //     }
+        // })
+
 
         dispatch({
             type: ADMIN_GET_LIST_USER_SUCCESS,

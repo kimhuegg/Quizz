@@ -28,7 +28,6 @@ function App() {
     const accesstoken = userInfo?.tokens.access
     const refreshtoken = userInfo?.tokens.refresh
   
-
   useEffect(() => {
     if( userInfo != null){
       console.log('app')
