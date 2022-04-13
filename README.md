@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# login 
+B1 : useFormik
+B2 : data and error will be saved in {user {userInfo , error }}
+B3 : save user data in localStorage
+B4 : export data from localstorage to re-dux store each connection 
+B5 : set refreshtoken
+B6 : validation
+B7 : rect-route-guard
+## note :navigate will sent a new request to server so, page will be reloaded, we need to export data from localstorage one more time
