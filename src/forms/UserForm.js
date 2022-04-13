@@ -51,21 +51,31 @@ function UserForm({ dataModal, onClose, option }) {
                 }
                 dispatch(createUser(userInfo))
             }
-            if(option == 'update'){
-                console.log('update')
-                console.log(values)
+            // if (option == 'update') {
+            //     console.log('update')
+            //     const avatarInfo = {
+            //         "avatar": values.avatar
+            //     }
+            //     console.log(avatarInfo)
 
-            }
+            // }
             setLoaded(true)
             onClose()
 
         },
     });
 
+    const changeAvatar = (e) => {
+        e.preventDefault()
+        var fileInputs = document.getElementById('myFile')
+        console.log(fileInputs.value)
+
+    }
+
     return (
         <>
             <form onSubmit={formik.handleSubmit}>
-                {/* {formik.errors.username ? <div><Alert severity="warning">{formik.errors.username}</Alert></div> : <></>} */}
+                {formik.errors.username ? <div><Alert severity="warning">{formik.errors.username}</Alert></div> : <></>}
                 <TextField
                     margin="normal"
                     required
@@ -79,7 +89,7 @@ function UserForm({ dataModal, onClose, option }) {
                     value={formik.values.username}
                     onChange={formik.handleChange}
                 />
-                {/* {formik.errors.email ? <div><Alert severity="warning">{formik.errors.email}</Alert></div> : <></>} */}
+                {formik.errors.password ? <div><Alert severity="warning">{formik.errors.password}</Alert></div> : <></>}
                 {
                     option == 'update' ? '' : <TextField
                         margin="normal"
@@ -95,6 +105,7 @@ function UserForm({ dataModal, onClose, option }) {
                     />
 
                 }
+                {formik.errors.email ? <div><Alert severity="warning">{formik.errors.email}</Alert></div> : <></>}
 
                 <TextField
                     margin="normal"
@@ -123,34 +134,24 @@ function UserForm({ dataModal, onClose, option }) {
                     </Select>
                 </FormControl>
 
-
-                {
-                    option == 'create' ? '' :
-                        <>
-                            <InputLabel
-                                variant="contained"
-                                component="label"
-                            >
-                                Upload Avatar
-                            </InputLabel>
-                            <input
-                                id="avatar"
-                                name="avatar"
-                                type="file"
-
-                            />
-                        </>
-
-                }
-
-
                 {/* {formik.errors.password ? <div><Alert severity="warning">{formik.errors.password}</Alert></div> : <></>} */}
 
-
+                
                 {!loaded ? <Button type="create" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                     {option}
                 </Button> : <CircularProgress />}
             </form>
+
+            {/* fix later */}
+            {
+                    option == 'create' ? '' :
+                        <>
+                            <form onSubmit={changeAvatar}>
+                                <input type="file" id="myFile" name="filename" />
+                                <input type="submit" />
+                            </form>
+                        </>
+                }
         </>
     )
 }

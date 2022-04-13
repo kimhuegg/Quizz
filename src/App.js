@@ -25,11 +25,9 @@ function App() {
   const {userInfo} = useSelector(state => state.user)
   const dispatch = useDispatch()
 
- 
     const accesstoken = userInfo?.tokens.access
     const refreshtoken = userInfo?.tokens.refresh
   
-
   useEffect(() => {
     if( userInfo != null){
       console.log('app')
