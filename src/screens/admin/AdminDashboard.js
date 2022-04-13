@@ -151,16 +151,11 @@ function AdminDashboard() {
                                                 </TableRow>
                                             ))
                                         }
-
-
-
                                     </TableBody>
                                 </Table>
                                 
                             ) : <CircularProgress />
                         }
-
-
                     </TableContainer>
                     <Copyright sx={{ pt: 4 }} />
                 </Container>

@@ -19,12 +19,6 @@ function RegisterScreen() {
     const location = useLocation()
     const { userInfo, error, registerInfo } = useSelector(state => state.user)
 
-    useEffect(() => {
-        // if (userInfo) {
-        //     navigate('/')
-        // }
-    }, [userInfo])
-
     return (
         <>
             <Container component="main" maxWidth="xs">
