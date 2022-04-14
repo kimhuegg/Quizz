@@ -9,7 +9,7 @@ function QuestionItem({questionItem, value, handleAnswer}) {
         <FormControl>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                value={value}
+                value={value? value : ''}
                 name="radio-buttons-group"
                 onChange={handleAnswer}
             >

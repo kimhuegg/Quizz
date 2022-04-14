@@ -14,31 +14,14 @@ import AlertStart from '../../components/AlertStart';
 
 function QuestionScreen() {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
     const [number, setNumber] = useState(1)
     const answer = useRef([])
-    const { userInfo } = useSelector(state => state.user)
     const questions = useSelector(state => state.question)
     const [value, setValue] = useState('')
 
     useEffect(() => {
-        if (userInfo) {
-            for (let index = 0; index < questions.listQuestions.results.length; index++) {
-                answer.current[index] = {
-                    id: questions.listQuestions.results[index].id,
-                    correctanswer: ""
-                }
-            }
-            console.log(answer.current)
-
-        } else {
-            navigate('/login')
-        }
-    }, [userInfo, questions])
-
-    useEffect(() => {
         // console.log(answer.current[number-1].correctanswer)
-        setValue(answer.current[number - 1].correctanswer)
+        setValue(answer.current[number - 1]?.correctanswer)
 
     }, [number])
 
@@ -84,12 +67,11 @@ function QuestionScreen() {
 
     //handle when user click to choose answer cau t10 phai tra loi thi ms push
     const handleAnswer = (e) => {
-        // console.log(e.target.value)
-        // answer.current = answer.current.filter((item) => item.id != questionItem.id)
-        answer.current[number - 1] = {
+       
+        answer.current.push ( {
             id: questionItem.id,
             correctanswer: e.target.value
-        }
+        })
         setValue(e.target.value)
 
     }
@@ -98,7 +80,6 @@ function QuestionScreen() {
         console.log(answer.current)
 
         if (number == 1) {
-            // console.log('number =1')
             handleClickOpenAlertStart()
         } else {
             setNumber(state => state - 1)
@@ -108,24 +89,9 @@ function QuestionScreen() {
     const handleSkip = () => {
         console.log(answer.current)
         if (number > totalResults - 1) {
-            if (answer.current[totalResults - 1] == null) {
-                answer.current.push({
-                    id: questionItem.id,
-                    correctanswer: "Not answer"
-                })
-            }
             handleClickOpenAlertSubmit()
 
         } else {
-            const index = answer.current.findIndex((element) => element.id == questionItem.id)
-            // console.log('index', index)
-            if (index == -1) {
-                answer.current.push({
-                    id: questionItem.id,
-                    correctanswer: "Not answer"
-                })
-            }
-
             setNumber(state => state + 1)
         }
 
@@ -135,23 +101,8 @@ function QuestionScreen() {
         console.log(answer.current)
 
         if (number > totalResults - 1) {
-
-            if (answer.current[totalResults - 1] == null) {
-                answer.current[number - 1] = {
-                    id: questionItem.id,
-                    correctanswer: "Not answer"
-                }
-            }
             handleClickOpenAlertSubmit()
         } else {
-            const index = answer.current.findIndex((element) => element.id == questionItem.id)
-            if (index == -1) {
-                answer.current[number - 1] = {
-                    id: questionItem.id,
-                    correctanswer: "Not answer"
-                }
-
-            }
             setNumber(state => state + 1)
         }
     }
