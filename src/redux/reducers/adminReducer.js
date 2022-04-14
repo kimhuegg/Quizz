@@ -1,4 +1,7 @@
-import { ADMIN_GET_LIST_USER_FAIL, ADMIN_GET_LIST_USER_SUCCESS } from '../actions/adminAction'
+import {
+    ADMIN_GET_LIST_USER_FAIL,
+    ADMIN_GET_LIST_USER_SUCCESS
+} from '../constants/index'
 
 const initState = {
     listUser: JSON.parse(localStorage.getItem('listUser'))
@@ -14,7 +17,7 @@ export default function userReducer(state = initState, action) {
             return {
                 error: action.payload
             }
-            
+
         default:
             return state
     }

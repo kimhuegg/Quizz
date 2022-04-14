@@ -16,9 +16,9 @@ export default function SignIn() {
 
   useEffect(() => {
     setLoad(false)
-    if (userInfo) {
-      navigate('/')
-    }
+    // if (userInfo) {
+    //   navigate('/')
+    // }
   }, [userInfo, error])
 
   return (

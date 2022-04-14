@@ -3,8 +3,7 @@ import {
   USER_LOGOUT_SUCCESS, 
   USER_LOGIN_FAIL, 
   USER_REGISTER_SUCCESS, 
-  CLEAR_USER, 
-  REFRESH_TOKEN} from '../actions/userAction'
+  REFRESH_TOKEN} from '../constants/index'
 
 const initState = {
   userInfo: JSON.parse(localStorage.getItem('userInfo'))
