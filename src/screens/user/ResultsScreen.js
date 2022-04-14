@@ -29,7 +29,6 @@ function ResultsScreen() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { listAnswer } = location.state
-  const { userInfo } = useSelector(state => state.user)
   const [isSubmit, setIsSubmit] = useState(false)
   const question = useSelector(state => state.question)
   const rs = question.score ? question.score : null
@@ -37,7 +36,7 @@ function ResultsScreen() {
   useEffect(() => {
     // console.log(listAnswer)
     dispatch(userSubmitAnswer(listAnswer))
-  }, [userInfo])
+  }, [])
 
   useEffect(() => {
     if (question.score) {

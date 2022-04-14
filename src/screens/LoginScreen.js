@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, CssBaseline, Container, TextField, Avatar, Button, FormControlLabel, Checkbox, Typography, Grid, Box } from '@mui/material';
+import { Alert, CssBaseline, Container,  Avatar,  Typography, Grid, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { useNavigate, Link } from 'react-router-dom';
@@ -16,9 +16,9 @@ export default function SignIn() {
 
   useEffect(() => {
     setLoad(false)
-    // if (userInfo) {
-    //   navigate('/')
-    // }
+    if (userInfo) {
+      navigate('/')
+    }
   }, [userInfo, error])
 
   return (
