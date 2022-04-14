@@ -1,4 +1,3 @@
-import axios from "axios"
 import { 
     api_getQuestions, 
     api_submitQuestions,
@@ -9,16 +8,14 @@ import {
 
  } from "../../api"
 
-export const USER_GET_QUESTION_SUCCESS = 'USER_GET_QUESTION_SUCCESS'
-export const ADMIN_GET_QUESTION_SUCCESS = 'ADMIN_GET_QUESTION_SUCCESS'
-
-export const USER_GET_QUESTION_FAIL = 'USER_GET_QUESTION_FAIL'
-export const ADMIN_GET_QUESTION_FAIL = 'ADMIN_GET_QUESTION_FAIL'
-
-export const USER_SUBMIT_ANSWER_SUCCESS = 'USER_SUBMIT_ANSWER_SUCCESS'
-export const USER_SUBMIT_ANSWER_FAIL = 'USER_SUBMIT_ANSWER_FAIL'
-
-export const ADMIN_CREATE_QUESTION = 'ADMIN_CREATE_QUESTION'
+ import {
+     USER_GET_QUESTION_SUCCESS,
+     USER_GET_QUESTION_FAIL,
+     ADMIN_GET_QUESTION_FAIL,
+     ADMIN_GET_QUESTION_SUCCESS,
+     USER_SUBMIT_ANSWER_FAIL,
+     USER_SUBMIT_ANSWER_SUCCESS
+ } from '../constants/index'
 
 export const userGetQuestions = () => async (dispatch, getState) => {
     try {

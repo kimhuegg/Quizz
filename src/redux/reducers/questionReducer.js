@@ -1,14 +1,12 @@
 import {
-    ADMIN_CREATE_QUESTION,
+    
     USER_GET_QUESTION_FAIL,
     USER_GET_QUESTION_SUCCESS,
     USER_SUBMIT_ANSWER_FAIL,
-    USER_SUBMIT_ANSWER_SUCCESS
-} from '../actions/questionAction'
-import { ADMIN_GET_QUESTION_SUCCESS, ADMIN_GET_QUESTION_FAIL } from '../actions/questionAction'
-
-
-import { CLEAR_PRODUCT } from '../actions/userAction'
+    USER_SUBMIT_ANSWER_SUCCESS,
+    ADMIN_GET_QUESTION_SUCCESS,
+    ADMIN_GET_QUESTION_FAIL,
+} from '../constants/index'
 
 const initState = {
     listQuestions: JSON.parse(localStorage.getItem('questionInfo'))
@@ -39,12 +37,6 @@ export default function questionReducer(state = initState, action) {
             return {
                 error: action.payload
             }
-        case ADMIN_CREATE_QUESTION:
-            return {
-                ...state
-            }
-        case CLEAR_PRODUCT:
-            return null
         default:
             return state
     }
