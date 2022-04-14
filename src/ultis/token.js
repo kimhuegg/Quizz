@@ -1,5 +1,4 @@
-import {logout, refreshToken} from '../redux/actions/userAction'
-import axios from 'axios'
+import { refreshToken} from '../redux/actions/userAction'
 import jwt_decode from "jwt-decode";
 
 export const handleTokenExpired = (access, dispatch, refresh) => {

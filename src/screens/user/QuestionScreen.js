@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState, useRef} from 'react'
+import { useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Typography } from '@mui/material';
 
@@ -47,7 +47,6 @@ function QuestionScreen() {
         // setAlertStartQuestion(false);
         navigate('/')
     }
-    //alert when user answer all question and continous click next orr user want ro submit answer
     const [alertSubmit, setAlertSubmit] = useState(false)
 
     const handleClickOpenAlertSubmit = () => {
@@ -63,7 +62,6 @@ function QuestionScreen() {
         // setAlertSubmit(false);
         navigate('/results', { state: { listAnswer: answer.current } })
     }
-
 
     //handle when user click to choose answer cau t10 phai tra loi thi ms push
     const handleAnswer = (e) => {
