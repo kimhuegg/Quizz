@@ -48,5 +48,9 @@ export const api_admin_createNewUser = (obj) =>
 export const api_admin_updateUser = (id, userInfo) =>
     API.patch(`/v1/users/${id}`, userInfo);
 
+export const api_refresh_token = (obj) =>
+    API.post('/v1/auth/refresh-tokens', obj);
+
+
 
 
