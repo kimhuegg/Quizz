@@ -29,9 +29,7 @@ function App() {
     const refreshtoken = userInfo?.tokens.refresh
   
   useEffect(() => {
-    if( userInfo != null){
-      console.log('app')
-      
+    if( userInfo != null){      
       handleTokenExpired(accesstoken, dispatch, refreshtoken)
     }
   }, [accesstoken])

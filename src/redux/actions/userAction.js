@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {handleTokenExpired} from '../../ultis/token'
+import {api_login, api_register, api_refresh_token} from '../../api/index'
 
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL'
@@ -17,7 +17,7 @@ export const REFRESH_TOKEN = 'REFRESH_TOKEN'
 
 export const login = (values) => async (dispatch) => {
     try {
-        const {data } = await axios.post('/v1/auth/login', values)
+        const {data } = await api_login(values)
         const {user, tokens} = data
         
         dispatch({
@@ -26,9 +26,6 @@ export const login = (values) => async (dispatch) => {
         })
 
         localStorage.setItem('userInfo', JSON.stringify(data))
-        
-        // handleTokenExpired(tokens.access, dispatch, tokens.refresh)
-
         
     } catch (error) {
         dispatch({
@@ -39,12 +36,10 @@ export const login = (values) => async (dispatch) => {
 }
 
 export const register = (values) => async (dispatch) => {
-    console.log(values)
+    // console.log(values)
     try {
-        const {data} = await axios.post('/v1/auth/register', values)
-        console.log({})
+        const {data} = await api_register(values)
         const {user, tokens} = data
-        
 
         dispatch({
             type: USER_REGISTER_SUCCESS,
@@ -88,11 +83,13 @@ export const refreshToken = (datatoken) => async (dispatch, getState) => {
     console.log('refresh token')
     const state = getState()
     const userInfo = state.user.userInfo
-    console.log(userInfo)
+    // console.log(userInfo)
 
-    const {data} = await axios.post('/v1/auth/refresh-tokens', {
-      "refreshToken": datatoken
-    })
+    const {data} = await api_refresh_token(
+        {
+            "refreshToken": datatoken
+        }
+    ) 
     const newInfo = {
         ...userInfo,
         tokens : data

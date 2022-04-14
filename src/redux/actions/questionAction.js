@@ -1,4 +1,13 @@
 import axios from "axios"
+import { 
+    api_getQuestions, 
+    api_submitQuestions,
+    api_admin_getQuestions,
+    api_admin_deleteQuestions,
+    api_admin_createNewQues,
+    api_admin_updateQues,
+
+ } from "../../api"
 
 export const USER_GET_QUESTION_SUCCESS = 'USER_GET_QUESTION_SUCCESS'
 export const ADMIN_GET_QUESTION_SUCCESS = 'ADMIN_GET_QUESTION_SUCCESS'
@@ -13,11 +22,7 @@ export const ADMIN_CREATE_QUESTION = 'ADMIN_CREATE_QUESTION'
 
 export const userGetQuestions = () => async (dispatch, getState) => {
     try {
-        const { data } = await axios.get('/v1/questions/', {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
+        const { data } = await api_getQuestions()
 
         dispatch({
             type: USER_GET_QUESTION_SUCCESS,
@@ -37,12 +42,8 @@ export const userGetQuestions = () => async (dispatch, getState) => {
 
 export const userSubmitAnswer = (listAnswer) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.post(`/v1/questions/submit`, listAnswer, {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
-        //   console.log(data)
+        const { data } = await api_submitQuestions(listAnswer)
+
         dispatch({
             type: USER_SUBMIT_ANSWER_SUCCESS,
             payload: data,
@@ -56,11 +57,7 @@ export const userSubmitAnswer = (listAnswer) => async (dispatch, getState) => {
 
 export const adminGetQuestions = () => async (dispatch, getState) => {
     try {
-        const { data } = await axios.get('/v1/questions/edit', {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
+        const { data } = await api_admin_getQuestions()
 
         dispatch({
             type: ADMIN_GET_QUESTION_SUCCESS,
@@ -80,13 +77,7 @@ export const adminGetQuestions = () => async (dispatch, getState) => {
 
 export const adminCreateQuestion = (question) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.post(`/v1/questions/edit`, question, {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
-        console.log('admin create answer')
-        console.log(data)
+        const { data } = await api_admin_createNewQues(question) 
 
         dispatch(adminGetQuestions())
 
@@ -97,13 +88,7 @@ export const adminCreateQuestion = (question) => async (dispatch, getState) => {
 
 export const adminDeleteQuestion = (idQuestion) => async (dispatch, getState) => {
     try {
-        const { data } = await axios.delete(`/v1/questions/edit/${idQuestion}`, {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
-        console.log('admin delete answer')
-        console.log(data)
+        const { data } = await api_admin_deleteQuestions(idQuestion)
         dispatch(adminGetQuestions())
     } catch (error) {
 
@@ -123,12 +108,7 @@ export const adminUpdateQuestion = (question) => async (dispatch, getState) => {
             correctanswer: question.correctanswer,
             question: question.question
         }
-        const { data } = await axios.patch(`/v1/questions/edit/${question.id}`, dataQuestion, {
-            headers: {
-                "Authorization": `Bearer ${getState().user.userInfo.tokens.access.token}`
-            }
-        })
-        console.log(data)
+        const { data } = await api_admin_updateQues(question.id, dataQuestion) 
         dispatch(adminGetQuestions())
     } catch (error) {
 
