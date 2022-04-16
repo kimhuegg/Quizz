@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -24,6 +24,7 @@ import Navbar from '../../components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListUser } from '../../redux/actions/adminAction';
 import UserForm from '../../forms/UserForm';
+import UserTable from '../../components/admin/UserTable';
 
 const style = {
     position: 'absolute',
@@ -74,61 +75,13 @@ function ManagerUser() {
             <Navbar />
             <DrawerComponent />
 
-            <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    height: '100vh',
-                    overflow: 'auto',
-                }}
-            >
-                {/* <Toolbar /> */}
-                <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                    <TableContainer sx={{ p: 5, minWidth: 300, mt: 13, border: '3px dashed grey', borderRadius: 5 }}>
-                    <Button onClick={createUser}>Create User</Button>
-
-                        
-                        <Table sx={{ minWidth: 300, p: 5 }} aria-label="simple table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>STT</TableCell>
-                                    <TableCell align="left">Username</TableCell>
-                                    <TableCell align="left">Email</TableCell>
-                                    <TableCell align="right">Verify</TableCell>
-                                    <TableCell align="right">Action</TableCell>
-                                    {/* <TableCell align="right">Action</TableCell> */}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-
-                                {
-                                    listUser.results.map((item, index) => (
-                                        <TableRow
-                                            key={index + 1}
-                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                        >
-                                            <TableCell component="th" scope="row">
-                                                {index + 1}</TableCell>
-                                            <TableCell align="left">{item.username}</TableCell>
-
-                                            <TableCell align="left">{item.email}</TableCell>
-                                            <TableCell align="right">{String(item.isEmailVerified)}</TableCell>
-                                            <TableCell align="right">
-                                                <Button onClick={updateUser} value={index}>Edit</Button>
-                                            </TableCell>
-                                            {/* <TableCell align="right">
-                                                <Button onClick={deleteUser} value={item.id}>Delete</Button>
-                                            </TableCell> */}
-                                        </TableRow>
-                                    ))
-                                }
-
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-
-                    <Copyright sx={{ pt: 4 }} />
+            <Box component="main" sx={{ flexGrow: 1, height: '100vh', overflow: 'auto', }}>
+                <Container maxWidth="lg" sx={{ mt: 3, mb: 4 }}>
+                    <Button sx={{ mt: 9 }} onClick={createUser}>Create User</Button>
+                    <UserTable itemsPerPage={5} items={listUser.results} onEdit={updateUser} />
+                    <Copyright sx={{ pt: 3 }} />
                 </Container>
+
             </Box>
             <Modal
                 open={open}

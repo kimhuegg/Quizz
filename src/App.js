@@ -36,8 +36,6 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
-
         <Route element={<RestrictLoginAndRegister />}>
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/register" element={<RegisterScreen />} />
@@ -57,9 +55,6 @@ function App() {
           </Route>
 
         </Route>
-
-
-
 
       </Routes>
     </div>

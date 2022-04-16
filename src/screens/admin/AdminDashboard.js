@@ -32,11 +32,13 @@ import Copyright from '../../components/Copyright';
 import DrawerComponent from '../../components/admin/DrawerComponent';
 import Navbar from '../../components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { adminGetQuestions, adminDeleteQuestion , adminUpdateQuestion} from '../../redux/actions/questionAction';
+import { adminGetQuestions, adminDeleteQuestion, adminUpdateQuestion } from '../../redux/actions/questionAction';
 import { getListUser } from '../../redux/actions/adminAction'
 
 import CircularProgress from '@mui/material/CircularProgress';
 import QuestionForm from '../../forms/QuestionForm';
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+import QuestionTable from '../../components/admin/QuestionTable';
 
 const style = {
     position: 'absolute',
@@ -105,59 +107,18 @@ function AdminDashboard() {
             <Box
                 component="main" sx={{ flexGrow: 1, height: '100vh', overflow: 'auto', }}>
                 {/* <Toolbar /> */}
-                <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-
-                    <TableContainer sx={{ p: 5, minWidth: 300, mt: 13, border: '3px dashed grey', borderRadius: 5 }}>
-                        <Button onClick={createQuestion}>Create Question</Button>
-
-                        {
-                            listQuestions ? (
-                                <Table sx={{ minWidth: 300, p: 5 }} aria-label="simple table">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>STT</TableCell>
-                                            <TableCell align="left">Question</TableCell>
-                                            <TableCell align="right">Answer</TableCell>
-                                            <TableCell align="right">Answer</TableCell>
-                                            <TableCell align="right">Answer</TableCell>
-                                            <TableCell align="right">Answer</TableCell>
-                                            <TableCell align="right">action</TableCell>
-                                            <TableCell align="right">action</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-
-                                    <TableBody>
-                                        {
-                                            questions.listQuestions.results.map((item, index) => (
-                                                <TableRow
-                                                    key={index}
-                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                                >
-                                                    <TableCell component="th" scope="row">
-                                                        {index + 1}     </TableCell>
-                                                    <TableCell align="left">{item.question}</TableCell>
-                                                    <TableCell align="right">{item.answer1}</TableCell>
-                                                    <TableCell align="right">{item.answer2}</TableCell>
-
-                                                    <TableCell align="right">{item.answer3}</TableCell>
-                                                    <TableCell align="right">{item.answer4}</TableCell>
-                                                    <TableCell align="right">
-                                                        <Button onClick={updateQuestion} value={index}>Edit</Button>
-                                                    </TableCell>
-                                                    <TableCell align="right">
-                                                        <Button onClick={deleteQuestion} value={item.id}>Delete</Button>
-                                                    </TableCell>
-
-                                                </TableRow>
-                                            ))
-                                        }
-                                    </TableBody>
-                                </Table>
-                                
-                            ) : <CircularProgress />
-                        }
-                    </TableContainer>
-                    <Copyright sx={{ pt: 4 }} />
+                <Container maxWidth="lg" sx={{ mt: 3, mb: 4 }}>
+                    <Button sx={{ mt: 9 }} onClick={createQuestion}>Create Question</Button>
+                    {
+                        listQuestions ? (
+                            <QuestionTable
+                                itemsPerPage={5}
+                                items={questions.listQuestions.results}
+                                deleteQuestion={deleteQuestion}
+                                updateQuestion={updateQuestion} />
+                        ) : <CircularProgress sx={{ mt: 5}}/>
+                    }
+                    <Copyright sx={{ pt: 3 }} />
                 </Container>
             </Box>
             <Modal
@@ -172,7 +133,7 @@ function AdminDashboard() {
                 </Box>
             </Modal>
         </Box>
-    );
+    )
 }
 export default AdminDashboard;
 
