@@ -3,7 +3,6 @@ import React, {
     useState
 } from 'react'
 import ReactPaginate from 'react-paginate';
-import './navi.css'
 
 import {
     CardContent,
