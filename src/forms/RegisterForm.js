@@ -14,7 +14,7 @@ import { register } from '../redux/actions/userAction'
 
 const RegisterSchema = Yup.object().shape({
     username: Yup.string()
-        .min(3, 'Too Shor!')
+        .min(3, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Required! '),
     password: Yup.string()
