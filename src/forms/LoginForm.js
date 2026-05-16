@@ -15,7 +15,7 @@ const LoginSchema = Yup.object().shape({
         .required('Required'),
     password: Yup.string()
         .min(5, 'Too Short!')
-        .max(50, 'Too Long!')
+        .max(51, 'Too Long!')
         .required('Required'),
 });
 
