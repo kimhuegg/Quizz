@@ -14,7 +14,7 @@ import { register } from '../redux/actions/userAction'
 import { adminCreateQuestion, adminUpdateQuestion } from '../redux/actions/questionAction'
 
 const validateQuestion = Yup.object().shape({
-    question: Yup.string().required("This field is required"),
+    question: Yup.string().required("This field is required !"),
     answer1: Yup.string().required("This field is required"),
     answer2: Yup.string().required("This field is required"),
     answer3: Yup.string().required("This field is required"),
