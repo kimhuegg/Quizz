@@ -18,7 +18,7 @@ const RegisterSchema = Yup.object().shape({
         .max(50, 'Too Long!')
         .required('Required! '),
     password: Yup.string()
-        .min(6, 'Too Short!')
+        .min(6, 'Too Short! Must Contain 6 Characters, One Lowercase')
         .max(50, 'Too Long!')
         // .matches(
         //     "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd@$!%*#?&]{6,}",
