@@ -8,8 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { register } from '../redux/actions/userAction'
 
 const RegisterSchema = Yup.object().shape({

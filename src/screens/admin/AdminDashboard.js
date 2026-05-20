@@ -1,43 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-
-} from '@mui/material';
-
-import MUIDataTable from "mui-datatables";
 
 import Copyright from '../../components/Copyright';
 import DrawerComponent from '../../components/admin/DrawerComponent';
 import Navbar from '../../components/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
-import { adminGetQuestions, adminDeleteQuestion, adminUpdateQuestion } from '../../redux/actions/questionAction';
+import { adminGetQuestions, adminDeleteQuestion } from '../../redux/actions/questionAction';
 import { getListUser } from '../../redux/actions/adminAction'
 
 import CircularProgress from '@mui/material/CircularProgress';
 import QuestionForm from '../../forms/QuestionForm';
-import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import QuestionTable from '../../components/admin/QuestionTable';
 
 const style = {
@@ -76,11 +52,11 @@ function AdminDashboard() {
 
     useEffect(() => {
         dispatch(adminGetQuestions())
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(getListUser())
-    }, [])
+    }, [dispatch])
 
 
     const deleteQuestion = (e) => {

@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
-import {
-    CardContent,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-
-} from '@mui/material';
-
 import Copyright from '../../components/Copyright';
 import DrawerComponent from '../../components/admin/DrawerComponent';
 import Navbar from '../../components/Navbar';
-import { useDispatch, useSelector } from 'react-redux';
-import { getListUser } from '../../redux/actions/adminAction';
+import { useSelector } from 'react-redux';
 import UserForm from '../../forms/UserForm';
 import UserTable from '../../components/admin/UserTable';
 
@@ -41,7 +27,6 @@ const style = {
 };
 
 function ManagerUser() {
-    const dispatch = useDispatch()
     const { listUser } = useSelector(state => state.admin)
     const [open, setOpen] = useState(false);
     const [dataModal, setDataModal] = useState({})

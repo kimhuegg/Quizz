@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Alert, FormControl, TextField, InputLabel, Button, FormControlLabel, Checkbox, Select, MenuItem } from '@mui/material';
+import { Alert, FormControl, TextField, InputLabel, Button, Select, MenuItem } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import NearMeIcon from '@mui/icons-material/NearMe';
 import CircularProgress from '@mui/material/CircularProgress';
 
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
-import { register } from '../redux/actions/userAction'
+import { useDispatch } from 'react-redux';
 import { createUser } from '../redux/actions/adminAction'
 
 const validateUser = Yup.object().shape({
@@ -21,7 +17,6 @@ const validateUser = Yup.object().shape({
 });
 
 function UserForm({ dataModal, onClose, option }) {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     // const user = useSelector(state => state.user)
     const [loaded, setLoaded] = useState(false)
@@ -42,7 +37,7 @@ function UserForm({ dataModal, onClose, option }) {
         onSubmit: (values) => {
             console.log('submmit')
             // console.log(values)
-            if (option == 'create') {
+            if (option === 'create') {
                 const userInfo = {
                     username: values.username,
                     password: values.password,
@@ -91,7 +86,7 @@ function UserForm({ dataModal, onClose, option }) {
                 />
                 {formik.errors.password ? <div><Alert severity="warning">{formik.errors.password}</Alert></div> : <></>}
                 {
-                    option == 'update' ? '' : <TextField
+                    option === 'update' ? '' : <TextField
                         margin="normal"
                         required
                         fullWidth
@@ -144,7 +139,7 @@ function UserForm({ dataModal, onClose, option }) {
 
             {/* fix later */}
             {
-                    option == 'create' ? '' :
+                    option === 'create' ? '' :
                         <>
                             <form onSubmit={changeAvatar}>
                                 <input type="file" id="myFile" name="filename" />
