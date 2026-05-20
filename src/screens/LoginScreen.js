@@ -10,7 +10,7 @@ import LoginForm from '../forms/LoginForm';
 
 export default function SignIn() {
   const navigate = useNavigate()
-  const [ setLoad] = useState(false)
+  const [ , setLoad] = useState(false)
   const { userInfo, error } = useSelector(state => state.user)
 
   useEffect(() => {
