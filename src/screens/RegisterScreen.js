@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Alert, CssBaseline, Container, Avatar,Typography, Grid, Box } from '@mui/material';
 import AssignmentIcon from '@mui/icons-material/Assignment'
-import { green, pink } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Copyright from '../components/Copyright';
@@ -12,7 +12,7 @@ import RegisterForm from '../forms/RegisterForm';
 import RegisterSuccess from '../components/RegisterSuccess';
 
 function RegisterScreen() {
-    const { userInfo, error, registerInfo } = useSelector(state => state.user)
+    const { error, registerInfo } = useSelector(state => state.user)
 
     return (
         <>

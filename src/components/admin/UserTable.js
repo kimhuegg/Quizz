@@ -5,15 +5,12 @@ import React, {
 import ReactPaginate from 'react-paginate';
 
 import {
-    CardContent,
     Table,
     TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    TableFooter
-
 } from '@mui/material';
 
 import Button from '@mui/material/Button';
@@ -59,7 +56,7 @@ function UserTable({ itemsPerPage, items, onEdit }) {
         console.log(`Loading items from ${itemOffset} to ${endOffset}`);
         setCurrentItems(items.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(items.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage]);
+    }, [itemOffset, items, itemsPerPage]);
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {

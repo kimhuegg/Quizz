@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Alert, FormControl, TextField, InputLabel, Button, FormControlLabel, Checkbox, Select, MenuItem } from '@mui/material';
+import { FormControl, TextField, InputLabel, Button, Select, MenuItem } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import NearMeIcon from '@mui/icons-material/NearMe';
 import CircularProgress from '@mui/material/CircularProgress';
 
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
-import { register } from '../redux/actions/userAction'
+import { useDispatch } from 'react-redux';
 import { adminCreateQuestion, adminUpdateQuestion } from '../redux/actions/questionAction'
 
 const validateQuestion = Yup.object().shape({
@@ -23,7 +19,6 @@ const validateQuestion = Yup.object().shape({
 });
 
 function QuestionForm({ dataModal, onClose , option}) {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     // const user = useSelector(state => state.user)
     const [loaded, setLoaded] = useState(false)
@@ -45,11 +40,11 @@ function QuestionForm({ dataModal, onClose , option}) {
         onSubmit: (values) => {
             console.log('submmit')
             // console.log(values)
-            if(option == 'create'){
+            if(option === 'create'){
                 dispatch(adminCreateQuestion(values))
 
             }
-            if(option == 'update'){
+            if(option === 'update'){
                 dispatch(adminUpdateQuestion(values))
 
             }

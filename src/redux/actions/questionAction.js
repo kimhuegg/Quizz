@@ -74,7 +74,7 @@ export const adminGetQuestions = () => async (dispatch, getState) => {
 
 export const adminCreateQuestion = (question) => async (dispatch, getState) => {
     try {
-        const { data } = await api_admin_createNewQues(question) 
+        await api_admin_createNewQues(question) 
 
         dispatch(adminGetQuestions())
 
@@ -85,7 +85,7 @@ export const adminCreateQuestion = (question) => async (dispatch, getState) => {
 
 export const adminDeleteQuestion = (idQuestion) => async (dispatch, getState) => {
     try {
-        const { data } = await api_admin_deleteQuestions(idQuestion)
+        await api_admin_deleteQuestions(idQuestion)
         dispatch(adminGetQuestions())
     } catch (error) {
 
@@ -105,7 +105,7 @@ export const adminUpdateQuestion = (question) => async (dispatch, getState) => {
             correctanswer: question.correctanswer,
             question: question.question
         }
-        const { data } = await api_admin_updateQues(question.id, dataQuestion) 
+        await api_admin_updateQues(question.id, dataQuestion) 
         dispatch(adminGetQuestions())
     } catch (error) {
 

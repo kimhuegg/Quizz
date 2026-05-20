@@ -3,15 +3,14 @@ import { Alert, CssBaseline, Container,  Avatar,  Typography, Grid, Box } from '
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector, } from 'react-redux';
+import { useSelector, } from 'react-redux';
 
 import Copyright from '../components/Copyright';
 import LoginForm from '../forms/LoginForm';
 
 export default function SignIn() {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const [load, setLoad] = useState(false)
+  const [ setLoad] = useState(false)
   const { userInfo, error } = useSelector(state => state.user)
 
   useEffect(() => {
@@ -19,7 +18,7 @@ export default function SignIn() {
     if (userInfo) {
       navigate('/')
     }
-  }, [userInfo, error])
+  }, [userInfo, error, setLoad, navigate])
 
   return (
     <Container component="main" maxWidth="xs">

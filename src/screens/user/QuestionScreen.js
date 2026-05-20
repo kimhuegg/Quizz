@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef} from 'react'
 import { useNavigate} from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Container, Typography } from '@mui/material';
 
 import Card from '@mui/material/Card';
@@ -77,7 +77,7 @@ function QuestionScreen() {
     const handleBack = () => {
         console.log(answer.current)
 
-        if (number == 1) {
+        if (number === 1) {
             handleClickOpenAlertStart()
         } else {
             setNumber(state => state - 1)

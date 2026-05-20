@@ -14,14 +14,13 @@ import Navbar from '../../components/Navbar';
 function DashboardScreen() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { userInfo } = useSelector(state => state.user)
     const questions = useSelector(state => state.question)
 
     const listQuestions = questions ? questions.listQuestions : null;
 
     useEffect(() => {
         dispatch(userGetQuestions())
-    }, [])
+    }, [dispatch])
 
     const handleQuestions = () => {
         if (listQuestions.totalResults > 0) {

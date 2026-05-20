@@ -14,7 +14,6 @@ import {
 export const login = (values) => async (dispatch) => {
     try {
         const { data } = await api_login(values)
-        const { user, tokens } = data
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -35,7 +34,7 @@ export const register = (values) => async (dispatch) => {
     // console.log(values)
     try {
         const { data } = await api_register(values)
-        const { user, tokens } = data
+        const { user } = data
 
         dispatch({
             type: USER_REGISTER_SUCCESS,

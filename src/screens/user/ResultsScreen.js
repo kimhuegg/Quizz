@@ -36,7 +36,7 @@ function ResultsScreen() {
   useEffect(() => {
     // console.log(listAnswer)
     dispatch(userSubmitAnswer(listAnswer))
-  }, [])
+  }, [dispatch, listAnswer])
 
   useEffect(() => {
     if (question.score) {
@@ -83,7 +83,7 @@ function ResultsScreen() {
                     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                       <TableCell component="th" scope="row"></TableCell>
                       <TableCell align="right">Score</TableCell>
-                      <TableCell align="right">{rs.filter(item => item.result == true).length}</TableCell>
+                      <TableCell align="right">{rs.filter(item => item.result === true).length}</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
